@@ -1,4 +1,4 @@
-// const movies = require('./data.js');
+const movies = require('./data.js');
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -56,19 +56,13 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-    if (moviesArray.length <=0) return null;
     allYears = [...new Set(moviesArray.map((movie) => movie.year))];
     allYears.sort((a,b) => a-b)
-    currentHighestScore = -1;
-    currentHighestScoreYear = 0;
-    allYears.forEach((year) => {
-        currentYearScore = scoresAverage(moviesArray.filter((element) => year === element.year))
-        if (currentYearScore > currentHighestScore) {
-            currentHighestScore = currentYearScore;
-            currentHighestScoreYear = year;
-        }
-    })
-    return `The best year was ${currentHighestScoreYear} with an average score of ${currentHighestScore}`;
+    bestAvgScorePerYearArray = [];
+    allYears.forEach((element) => {
+      bestAvgScorePerYearArray.push(`${element} with an average score of ${scoresAverage(moviesArray.filter((elementMoviesArray) => element.year === elementMoviesArray.year))}`);
+    });
+    return bestAvgScorePerYearArray;
   }
   
-//   console.log(bestYearAvg(movies));
+  console.log(bestYearAvg(movies));
